@@ -1,0 +1,12 @@
+$kind: http-request
+url: "{{listingBaseUrl}}/listing/listing/deleteListing/-999999"
+method: DELETE
+headers:
+  Accept: application/json
+  Authorization: Bearer {{authToken}}
+scripts:
+  - type: afterResponse
+    code: pm.test('D1 status is 400/404', function () {
+      pm.expect(pm.response.code).to.be.oneOf([400, 404]); });
+    language: text/javascript
+order: 1000

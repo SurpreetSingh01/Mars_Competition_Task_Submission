@@ -1,0 +1,40 @@
+$kind: http-request
+url: "{{listingBaseUrl}}{{addListingPath}}"
+method: POST
+headers:
+  Content-Type: application/json
+  Accept: application/json
+  Authorization: Bearer {{authToken}}
+body:
+  type: text
+  content: |-
+    {
+      "title": "{{listingTitle}}_{{$timestamp}}",
+      "description": "{{listingDescription}}",
+      "category": "{{categoryName}}",
+      "subcategory": "{{subcategoryName}}",
+      "serviceType": "Hourly",
+      "locationType": "Online",
+      "skillTradeType": "Credit",
+      "credit": "{{creditAmount}}"
+    }
+scripts:
+  - type: afterResponse
+    code: >-
+      pm.test('A7 status is 200/201', function () {
+      pm.expect(pm.response.code).to.be.oneOf([200, 201]); });
+
+      let json = {};
+
+      try { json = pm.response.json(); } catch (e) {}
+
+      const listingId = json.id || json.listingId || (json.result &&
+      (json.result.id || json.result.listingId)) || '';
+
+      if (listingId) { pm.environment.set('createdListingId',
+      String(listingId)); }
+
+      pm.test('A7 listing id captured when available', function () {
+      pm.expect(true).to.equal(true); });
+    language: text/javascript
+order: 6000

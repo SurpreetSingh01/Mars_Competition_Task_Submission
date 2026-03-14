@@ -1,0 +1,23 @@
+$kind: http-request
+url: "{{profileBaseUrl}}{{addEducationPath}}"
+method: POST
+headers:
+  Content-Type: application/json
+  Accept: application/json
+  Authorization: Bearer {{authToken}}
+body:
+  type: text
+  content: |-
+    {
+      "country": "{{educationCountry}}",
+      "instituteName": "{{educationInstitute}}",
+      "title": "{{educationTitle}}",
+      "degree": "{{educationDegree}}",
+      "yearOfGraduation": "{{educationYear}}"
+    }
+scripts:
+  - type: afterResponse
+    code: pm.test('A4 status is 200/201', function () {
+      pm.expect(pm.response.code).to.be.oneOf([200, 201]); });
+    language: text/javascript
+order: 3000

@@ -1,0 +1,36 @@
+$kind: http-request
+url: "{{listingBaseUrl}}{{addListingPath}}"
+method: POST
+headers:
+  Content-Type: application/json
+  Accept: application/json
+  Authorization: Bearer {{authToken}}
+body:
+  type: text
+  content: |-
+    {
+      "title": "invalid negative case",
+      "description": "invalid negative case",
+      "category": "Programming & Tech",
+      "subcategory": "QA",
+      "serviceType": "INVALID",
+      "locationType": "Online",
+      "skillTradeType": "Credit",
+      "credit": 50
+    }
+scripts:
+  - type: afterResponse
+    code: >-
+      pm.test('N3 status is 200', function () { pm.response.to.have.status(200);
+      });
+
+      let json = {};
+
+      try { json = pm.response.json(); } catch (e) {}
+
+      pm.test('N3 invalid payload rejected by API contract', function () {
+        const failed = (json.success === false) || (json.isSuccess === false);
+        pm.expect(failed).to.equal(true);
+      });
+    language: text/javascript
+order: 3000

@@ -1,0 +1,13 @@
+RunDate,RequirementId,Folder,RequestName,Method,Endpoint,ExpectedStatus,ActualStatus,BodyValidation,SchemaValidation,ResponseTimeMs,PassFail,NegativeOrDestructive,Observation,Recommendation
+, A2, A2-A9 Happy Path, A2 - Login, POST, /authentication/authentication/signin, 200/201, , , , , , No, , 
+, A3, A2-A9 Happy Path, A3 - Is User Authenticated, POST, /profile/profile/isUserAuthenticated, 200/204, , , , , , No, , 
+, A4, A2-A9 Happy Path, A4 - Add Education, POST, /profile/profile/addEducation, 200/201, , , , , , No, , 
+, A5, A2-A9 Happy Path, A5 - Add Certification, POST, /profile/profile/addCertification, 200/201, , , , , , No, , 
+, A6, A2-A9 Happy Path, A6 - Get Categories, POST, /listing/listing/getCategories, 200, , , , , , No, , 
+, A7, A2-A9 Happy Path, A7 - Add Listing, POST, /listing/listing/addListing, 200/201, , , , , , No, , 
+, A8, A2-A9 Happy Path, A8 - Search Listings, POST, /listing/listing/searchListings, 200, , , , , , No, , 
+, A9, A2-A9 Happy Path, A9 - Delete Created Listing (Destructive), DELETE, /listing/listing/deleteListing/{id}, 200/204/404, , , , , , Yes, , 
+, N1, Negative Cases, N1 - Login with invalid credentials, POST, /authentication/authentication/signin, 400/401, , , , , , Yes, , 
+, N2, Negative Cases, N2 - Add Education without auth token, POST, /profile/profile/addEducation, 401/403, , , , , , Yes, , 
+, N3, Negative Cases, N3 - Add Listing invalid payload, POST, /listing/listing/addListing, 400/422, , , , , , Yes, , 
+, D1, Destructive & Cleanup, D1 - Delete listing with invalid id, DELETE, /listing/listing/deleteListing/-999999, 400/404, , , , , , Yes, , 

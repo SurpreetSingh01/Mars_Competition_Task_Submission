@@ -1,0 +1,27 @@
+{
+  "login": {
+    "baseUrl": "http://localhost:5003/",
+    "username": "Surpreetsinghnz@gmail.com",
+    "password": "Taransingh46"
+  },
+  "skills": {
+    "skillName": "Selenium",
+    "skillLevel": "Expert"
+  },
+  "languages": {
+    "language": "English",
+    "level": "Fluent"
+  },
+  "profile": {
+    "firstName": "John",
+    "lastName": "Doe",
+    "availability": "Part Time",
+    "hours": "More than 30 hours",
+    "earnTarget": "More than $1000 per month"
+  },
+  "search": {
+    "keyword": "Selenium",
+    "category": "Programming & Tech"
+  }
+}
+

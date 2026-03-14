@@ -1,0 +1,1 @@
+// Legacy template test file. Real tests live under the Tests folder.

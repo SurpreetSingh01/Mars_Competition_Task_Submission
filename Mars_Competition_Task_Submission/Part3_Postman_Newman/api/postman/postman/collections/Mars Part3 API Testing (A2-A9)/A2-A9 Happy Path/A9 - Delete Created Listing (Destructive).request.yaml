@@ -1,0 +1,19 @@
+$kind: http-request
+url: "{{listingBaseUrl}}{{deleteListingPathTemplate}}"
+method: DELETE
+headers:
+  Accept: application/json
+  Authorization: Bearer {{authToken}}
+scripts:
+  - type: beforeRequest
+    code: >-
+      const id = pm.environment.get('createdListingId') ||
+      pm.environment.get('listingId');
+
+      pm.environment.set('listingId', id);
+    language: text/javascript
+  - type: afterResponse
+    code: pm.test('A9 status is 200/204/404', function () {
+      pm.expect(pm.response.code).to.be.oneOf([200, 204, 404]); });
+    language: text/javascript
+order: 8000
