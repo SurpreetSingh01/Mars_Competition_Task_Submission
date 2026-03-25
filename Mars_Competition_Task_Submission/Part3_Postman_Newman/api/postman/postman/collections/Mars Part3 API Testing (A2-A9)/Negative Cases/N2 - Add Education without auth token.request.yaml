@@ -1,0 +1,22 @@
+$kind: http-request
+url: "{{profileBaseUrl}}{{addEducationPath}}"
+method: POST
+headers:
+  Content-Type: application/json
+  Accept: application/json
+body:
+  type: text
+  content: |-
+    {
+      "country": "India",
+      "instituteName": "No Auth Univ",
+      "title": "B.Tech",
+      "degree": "IT",
+      "yearOfGraduation": "2020"
+    }
+scripts:
+  - type: afterResponse
+    code: pm.test('N2 status is 401/403', function () {
+      pm.expect(pm.response.code).to.be.oneOf([401, 403]); });
+    language: text/javascript
+order: 2000

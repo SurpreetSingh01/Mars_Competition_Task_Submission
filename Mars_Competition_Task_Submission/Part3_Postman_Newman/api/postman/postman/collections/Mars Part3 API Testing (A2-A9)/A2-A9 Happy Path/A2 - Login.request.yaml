@@ -1,0 +1,47 @@
+$kind: http-request
+name: A2 - Login
+url: "{{authBaseUrl}}{{loginPath}}"
+method: POST
+headers:
+  Content-Type: application/json
+  Accept: application/json
+body:
+  type: text
+  content: |-
+    {
+      "email": "Surpreetsinghnz@gmail.com",
+      "password": "Taransingh46"
+    }
+scripts:
+  - type: afterResponse
+    code: |-
+      pm.test("A2 status is 200/201", function () {
+          pm.expect(pm.response.code).to.be.oneOf([200, 201]);
+      });
+
+      let json = {};
+      try {
+          json = pm.response.json();
+      } catch (e) {}
+
+      const token =
+          json?.token?.token ||
+          json?.bearerToken ||
+          json?.result?.token ||
+          json?.accessToken ||
+          json?.jwtToken ||
+          "";
+
+      pm.environment.set("authToken", token);
+
+      pm.test("A2 token extracted", function () {
+          pm.expect(token, "token missing in login response").to.not.equal("");
+      });
+
+      const schema = { type: "object" };
+      pm.test("A2 response body is JSON object", function () {
+          pm.expect(json).to.be.an("object");
+          pm.expect(json).to.have.jsonSchema(schema);
+      });
+    language: text/javascript
+order: 1000

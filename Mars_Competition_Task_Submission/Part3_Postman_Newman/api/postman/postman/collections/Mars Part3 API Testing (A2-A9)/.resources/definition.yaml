@@ -1,0 +1,20 @@
+$kind: collection
+description: Submission-ready API suite for Project Mars Part 3. Update endpoint
+  paths in environment if local service routes differ.
+variables:
+  notes: If your service host/ports differ per API family, split base URL into
+    auth/profile/listing variables in environment.
+scripts:
+  - type: http:beforeRequest
+    code: >-
+      pm.variables.set('runTs', new Date().toISOString());
+
+      if (!pm.environment.get('authToken')) { pm.environment.set('authToken',
+      ''); }
+    language: text/javascript
+  - type: http:afterResponse
+    code: >-
+      pm.test('Response time under configured timeout', function () {
+        pm.expect(pm.response.responseTime).to.be.below(parseInt(pm.environment.get('requestTimeoutMs') || '15000', 10));
+      });
+    language: text/javascript
