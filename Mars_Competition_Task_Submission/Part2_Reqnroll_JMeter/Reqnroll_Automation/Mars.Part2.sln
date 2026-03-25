@@ -1,0 +1,27 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.0.31903.59
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "tests", "tests", "{8276E569-7E45-4793-8F4A-C4EB0CB907B8}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Mars.Part2.UiTests", "tests\Mars.Part2.UiTests\Mars.Part2.UiTests.csproj", "{DFCB60D0-3CE3-4B78-9600-435C9F8DAA55}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{DFCB60D0-3CE3-4B78-9600-435C9F8DAA55}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{DFCB60D0-3CE3-4B78-9600-435C9F8DAA55}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{DFCB60D0-3CE3-4B78-9600-435C9F8DAA55}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{DFCB60D0-3CE3-4B78-9600-435C9F8DAA55}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{DFCB60D0-3CE3-4B78-9600-435C9F8DAA55} = {8276E569-7E45-4793-8F4A-C4EB0CB907B8}
+	EndGlobalSection
+EndGlobal
